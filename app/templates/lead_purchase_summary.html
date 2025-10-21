@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>KovaLifeLeads Lead Purchase Summary</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f8fafc;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 640px;
+      background-color: #ffffff;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border-top: 5px solid #4f46e5;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      color: #ffffff;
+      font-size: 28px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .header p {
+      color: #e0e7ff;
+      margin: 8px 0 0 0;
+      font-size: 16px;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .greeting {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .summary-box {
+      background-color: #f1f5f9;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+      border-left: 4px solid #4f46e5;
+    }
+
+    .total-amount {
+      font-size: 24px;
+      font-weight: 700;
+      color: #4f46e5;
+      margin: 10px 0;
+    }
+
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .items-table th {
+      background-color: #4f46e5;
+      color: white;
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .items-table td {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 14px 16px;
+      font-size: 15px;
+    }
+
+    .items-table tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    .items-table tr:hover {
+      background-color: #f1f5f9;
+    }
+
+    .price {
+      color: #059669;
+      font-weight: 600;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding: 25px 20px;
+      background-color: #f8fafc;
+    }
+
+    .footer p {
+      margin: 8px 0;
+    }
+
+    .highlight {
+      color: #4f46e5;
+      font-weight: 600;
+    }
+
+    .thank-you {
+      text-align: center;
+      margin: 25px 0 15px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px auto;
+        border-radius: 8px;
+      }
+      
+      .content {
+        padding: 20px;
+      }
+      
+      .items-table {
+        font-size: 14px;
+      }
+      
+      .items-table th,
+      .items-table td {
+        padding: 10px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Lead Purchase Summary</h1>
+      <p>KovaLifeLeads Marketplace</p>
+    </div>
+
+    <div class="content">
+      <p class="greeting">Hi <span class="highlight">{{ name }}</span>,</p>
+      
+      <p>Thank you for your payment! Your marketplace lead purchase has been successfully processed.</p>
+
+      <div class="summary-box">
+        <p style="margin: 0 0 8px 0; font-weight: 500;">Total Amount Paid:</p>
+        <div class="total-amount">${{ total_paid_amount }}</div>
+        <p style="margin: 8px 0 0 0; color: #64748b; font-size: 14px;">Your order details are shown below</p>
+      </div>
+
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th>Lead Name</th>
+            <th>Unit Price</th>
+            <th>State</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cart_item in cart_items %}
+          <tr>
+            <td>{{ cart_item.title }}</td>
+            <td class="price">${{ cart_item.unit_price }}</td>
+            <td>{{ cart_item.state | default('N/A') }}</td>
+            <td>{{ cart_item.quantity }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="thank-you">
+        Thank you for choosing KovaLifeLeads
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>This is an automated confirmation from KovaLifeLeads Marketplace</p>
+      <p>Please do not reply to this email</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Approval Required – KovaLifeLeads</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: #f3f7fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      border-top: 6px solid #0072ff;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0072ff, #00c6ff);
+      padding: 20px 0;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #4a4a4a;
+      line-height: 1.6;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    strong {
+      color: #0072ff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #e0e6ed;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f0f5ff;
+      color: #003366;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #fafbfc;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    a.button {
+      display: inline-block;
+      background: linear-gradient(135deg, #0072ff, #00c6ff);
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+    }
+
+    a.button:hover {
+      background: linear-gradient(135deg, #0059d6, #009ee0);
+      transform: translateY(-1px);
+    }
+
+    .footer {
+      background-color: #f0f5ff;
+      text-align: center;
+      padding: 15px;
+      font-size: 12px;
+      color: #7a869a;
+      border-top: 1px solid #e3e8f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Document Approval Required</h1>
+    </div>
+
+    <div class="content">
+      <p><strong>{{ agent_name }}</strong> has uploaded new documentation for a recently sold lead via <strong>KovaLifeLeads</strong>.  
+      Please verify the following details and proceed with approval if everything looks good.</p>
+
+      <table>
+        <tr>
+          <th>Identifier</th>
+          <th>Full Name</th>
+          <th>Sale Date</th>
+        </tr>
+        <tr>
+          <td>{{ mortgage_id }}</td>
+          <td>{{ full_name }}</td>
+          <td>{{ sold_date }}</td>
+        </tr>
+      </table>
+
+      <div class="button-container">
+        <a href="{{ link_is }}" class="button">Review Submission</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 KovaLifeLeads. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

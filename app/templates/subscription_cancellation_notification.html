@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscription Cancelled - KovaLifeLeads</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f2f4f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .email-container {
+      max-width: 620px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #ff3c38, #ff7979);
+      color: #ffffff;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    .content {
+      padding: 35px 40px;
+    }
+
+    .content h2 {
+      font-size: 20px;
+      color: #e63946;
+      margin-top: 0;
+      font-weight: 600;
+    }
+
+    .content p {
+      line-height: 1.7;
+      font-size: 16px;
+      margin: 12px 0;
+      color: #444;
+    }
+
+    .details-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .details-table th,
+    .details-table td {
+      border: 1px solid #e0e4e8;
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .details-table th {
+      background-color: #f9fafc;
+      font-weight: 600;
+      color: #1d3557;
+      width: 40%;
+    }
+
+    .details-table td {
+      background-color: #ffffff;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .reactivate-button {
+      display: inline-block;
+      background-color: #e63946;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.3s ease;
+    }
+
+    .reactivate-button:hover {
+      background-color: #c92834;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #777;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      background-color: #f9fafc;
+      text-align: center;
+      padding: 20px 15px;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #e5e9f0;
+    }
+
+    .footer p {
+      margin: 6px 0;
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 25px 20px;
+      }
+
+      .reactivate-button {
+        width: 100%;
+        padding: 14px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>Subscription Cancelled</h1>
+    </div>
+
+    <div class="content">
+      <p>Hi <strong>{{ name }}</strong>,</p>
+
+      <p>
+        We’re writing to confirm that your subscription has been
+        <strong style="color:#e63946;">cancelled</strong>. We're sorry to see you go!
+      </p>
+
+      <h2>Subscription Details</h2>
+
+      <table class="details-table" role="presentation">
+        <tbody>
+          <tr>
+            <th>Subscription Item</th>
+            <td>{{ item_name }}</td>
+          </tr>
+          <tr>
+            <th>Subscription ID</th>
+            <td>{{ subscription_id }}</td>
+          </tr>
+          <tr>
+            <th>Cancelled At</th>
+            <td>{{ canceled_at }}</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td>{{ subscription_status }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="note">
+        If you’d like to reactivate your subscription, you can easily do so by clicking the button below.
+      </p>
+
+      <div class="button-container">
+        <a href="{{ reactivate_url }}" class="reactivate-button">Reactivate Subscription</a>
+      </div>
+
+      <p class="note">
+        Have questions? Reach out to us at
+        <a href="mailto:support@kovalifeleads.com" style="color:#e63946; text-decoration:none;">
+          support@kovalifeleads.com
+        </a>.
+      </p>
+    </div>
+
+    <div class="footer">
+      <p>This is an automated message from <strong>KovaLifeLeads</strong>. Please do not reply.</p>
+      <p>© 2025 KovaLifeLeads. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+
+</html>

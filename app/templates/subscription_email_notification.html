@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>New Subscription Alert - KovaLifeLeads</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 0;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+    .email-wrapper {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-top: 5px solid #4f46e5;
+    }
+    .email-header {
+      background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+      color: #ffffff;
+      padding: 35px 20px;
+      text-align: center;
+    }
+    .email-header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .email-header p {
+      margin: 8px 0 0 0;
+      font-size: 16px;
+      color: #e0e7ff;
+    }
+    .email-body {
+      padding: 35px 30px;
+    }
+    .greeting {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .notification-box {
+      background-color: #e0e7ff;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+      border-left: 4px solid #4f46e5;
+    }
+    .subscription-card {
+      background-color: #f8fafc;
+      border-radius: 8px;
+      padding: 25px;
+      margin: 30px 0;
+      border: 1px solid #e2e8f0;
+    }
+    .subscription-card h2 {
+      margin: 0 0 20px 0;
+      font-size: 18px;
+      color: #1e293b;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .detail-item {
+      padding: 12px 15px;
+      background-color: #ffffff;
+      border-radius: 6px;
+      border-left: 3px solid #4f46e5;
+    }
+    .detail-item.full-width {
+      grid-column: 1 / -1;
+    }
+    .detail-label {
+      font-weight: 600;
+      color: #475569;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .detail-value {
+      color: #1e293b;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .amount-badge {
+      display: inline-block;
+      background-color: #10b981;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      background-color: #dbeafe;
+      color: #1e40af;
+    }
+    .states-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 5px;
+    }
+    .state-tag {
+      background-color: #f1f5f9;
+      color: #475569;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 13px;
+      border: 1px solid #e2e8f0;
+    }
+    .email-footer {
+      font-size: 14px;
+      text-align: center;
+      color: #64748b;
+      padding: 25px 20px;
+      background-color: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+    }
+    .highlight {
+      color: #4f46e5;
+      font-weight: 600;
+    }
+    @media (max-width: 600px) {
+      .email-wrapper {
+        margin: 20px auto;
+        border-radius: 8px;
+      }
+      .email-body {
+        padding: 25px 20px;
+      }
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-wrapper">
+  <div class="email-header">
+    <h1>New Subscription Alert</h1>
+    <p>KovaLifeLeads Platform</p>
+  </div>
+
+  <div class="email-body">
+    {% if name %}
+      <p class="greeting">Hi <span class="highlight">{{ name }}</span>,</p>
+      <div class="notification-box">
+        Your subscription request has been processed. Here's your subscription status:
+      </div>
+    {% else %}
+      <p class="greeting">Hello Admin,</p>
+      <div class="notification-box">
+        <strong>{{ user_name }}</strong> has initiated a new subscription. Details are below:
+      </div>
+    {% endif %}
+
+    <div class="subscription-card">
+      <h2>Subscription Details</h2>
+      
+      <div class="detail-grid">
+        <div class="detail-item">
+          <div class="detail-label">Subscription Item</div>
+          <div class="detail-value">{{ item_name }}</div>
+        </div>
+        
+        <div class="detail-item">
+          <div class="detail-label">Amount</div>
+          <div class="detail-value">
+            <span class="amount-badge">${{ subscription_amount }} / week</span>
+          </div>
+        </div>
+        
+        <div class="detail-item full-width">
+          <div class="detail-label">States Chosen</div>
+          <div class="states-list">
+            {% for state in states %}
+            <span class="state-tag">{{ state }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <div class="detail-item">
+          <div class="detail-label">Subscription ID</div>
+          <div class="detail-value">{{ subscription_id }}</div>
+        </div>
+        
+        <div class="detail-item">
+          <div class="detail-label">Status</div>
+          <div class="detail-value">
+            <span class="status-badge">{{ subscription_status }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="email-footer">
+    <p>This is an automated notification from KovaLifeLeads</p>
+    <p>Please do not reply to this email</p>
+  </div>
+</div>
+</body>
+</html>

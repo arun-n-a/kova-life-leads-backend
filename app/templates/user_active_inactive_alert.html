@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KovaLifeLeads Account Access Update</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 5px solid #4f46e5;
+        }
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+            padding: 35px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 8px 0 0 0;
+            font-size: 16px;
+            color: #e0e7ff;
+        }
+        .content {
+            padding: 35px 30px;
+        }
+        .greeting {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .status-alert {
+            background-color: #fef3f2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #dc2626;
+        }
+        .status-alert.enabled {
+            background-color: #f0fdf4;
+            border-left-color: #16a34a;
+        }
+        .status-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .status-text {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .status-enabled {
+            color: #16a34a;
+        }
+        .status-disabled {
+            color: #dc2626;
+        }
+        .action-section {
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .login-button {
+            display: inline-block;
+            background-color: #4f46e5;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+        }
+        .login-button:hover {
+            background-color: #4338ca;
+        }
+        .support-section {
+            text-align: center;
+            margin: 25px 0 15px 0;
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .support-link {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .support-link:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            font-size: 14px;
+            text-align: center;
+            color: #64748b;
+            padding: 25px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        .highlight {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .app-name {
+            font-weight: 700;
+            color: #4f46e5;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                border-radius: 8px;
+            }
+            .content {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Account Access Update</h1>
+            <p>KovaLifeLeads Platform</p>
+        </div>
+        
+        <div class="content">
+            <p class="greeting">Dear <span class="highlight">{{ data.name }}</span>,</p>
+            
+            <p>This email is to inform you about a change in the access status of your <span class="app-name">KovaLifeLeads</span> account.</p>
+
+            <div class="status-alert {% if data.is_active %}enabled{% endif %}">
+                <div class="status-text {% if data.is_active %}status-enabled{% else %}status-disabled{% endif %}">
+                    <span class="status-icon">{% if data.is_active %}✅{% else %}❌{% endif %}</span>
+                    Account {{ data.status_text }}
+                </div>
+                <p>Your account access has been updated by an administrator.</p>
+            </div>
+
+            {% if data.is_active %}
+            <div class="action-section">
+                <p style="margin-bottom: 20px; font-weight: 500;">Your account is now active. You can log in and continue using our services.</p>
+                <a href="{{ login_url }}" class="login-button">Access Your Account</a>
+                <p style="margin-top: 15px; font-size: 14px; color: #64748b;">
+                    Or use this link: <a href="{{ data.login_url }}" style="color: #4f46e5; word-break: break-all;">{{ data.login_url }}</a>
+                </p>
+            </div>
+            {% else %}
+            <div class="support-section">
+                <p style="margin-bottom: 15px; font-weight: 500;">Currently, you will not be able to access your <span class="app-name">KovaLifeLeads</span> account.</p>
+                <p>If you believe this is an error or have any questions, please contact our support team.</p>
+                <a href="mailto:support@kovalifeleads.com" class="support-link">Contact Support Team</a>
+            </div>
+            {% endif %}
+
+            <p style="text-align: center; margin-top: 30px;">Thank you for using <span class="app-name">KovaLifeLeads</span>.</p>
+        </div>
+
+        <div class="footer">
+            <p>This is an automated notification from <span class="app-name">KovaLifeLeads</span>.</p>
+            <p>Please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>

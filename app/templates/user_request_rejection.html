@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Request Rejection Notification - KovaLifeLeads</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 5px solid #dc2626;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            padding: 35px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 8px 0 0 0;
+            font-size: 16px;
+            color: #fecaca;
+        }
+        .content {
+            padding: 35px 30px;
+        }
+        .greeting {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .rejection-alert {
+            background-color: #fef2f2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #dc2626;
+        }
+        .alert-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .alert-title {
+            font-weight: 600;
+            font-size: 18px;
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+        .reason-box {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 1px solid #e2e8f0;
+        }
+        .reason-title {
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .reason-content {
+            color: #1e293b;
+            font-size: 15px;
+            line-height: 1.5;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            border-left: 3px solid #dc2626;
+        }
+        .support-section {
+            text-align: center;
+            margin: 30px 0 15px 0;
+            padding: 25px;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+        }
+        .support-link {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .support-link:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            font-size: 14px;
+            text-align: center;
+            color: #64748b;
+            padding: 25px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        .highlight {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        .app-name {
+            font-weight: 700;
+            color: #4f46e5;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                border-radius: 8px;
+            }
+            .content {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Request Status Update</h1>
+            <p>KovaLifeLeads Platform</p>
+        </div>
+        
+        <div class="content">
+            <p class="greeting">Hello <span class="highlight">{{ name }}</span>,</p>
+            
+            <div class="rejection-alert">
+                <div class="alert-title">
+                    <span class="alert-icon">❌</span>
+                    Request Rejected
+                </div>
+                <p>We regret to inform you that your user request has been <strong>rejected</strong>.</p>
+            </div>
+
+            <div class="reason-box">
+                <div class="reason-title">Reason for Rejection:</div>
+                <div class="reason-content">
+                    {{ message }}
+                </div>
+            </div>
+
+            <div class="support-section">
+                <p style="margin-bottom: 15px; font-weight: 500;">If you have any questions or need clarification about this decision, our support team is here to help.</p>
+                <a href="mailto:support@kovalifeleads.com" class="support-link">Contact Support Team</a>
+            </div>
+
+            <p style="text-align: center; color: #64748b; margin-top: 25px;">
+                Thank you for your understanding and for considering <span class="app-name">KovaLifeLeads</span>.
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 KovaLifeLeads. All rights reserved.</p>
+            <p>This is an automated notification. Please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>

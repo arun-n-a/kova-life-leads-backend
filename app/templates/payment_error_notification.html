@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Transaction Declined</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #eef2f7;
+      padding: 30px;
+      color: #333;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 650px;
+      background-color: #ffffff;
+      margin: auto;
+      padding: 30px 35px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e3e8ee;
+    }
+
+    .header h1 {
+      color: #e63946;
+      margin: 0;
+      font-weight: 600;
+      font-size: 26px;
+    }
+
+    .content h2 {
+      color: #1d3557;
+      margin-top: 0;
+    }
+
+    .content p {
+      line-height: 1.6;
+      margin: 12px 0;
+      color: #444;
+    }
+
+    .details-table,
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .details-table th,
+    .details-table td,
+    .items-table th,
+    .items-table td {
+      border: 1px solid #dce3eb;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .details-table th {
+      background-color: #f7f9fc;
+      width: 35%;
+      color: #1d3557;
+      font-weight: 600;
+    }
+
+    .items-table th {
+      background-color: #1d3557;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .items-table td {
+      background-color: #fafbfd;
+    }
+
+    .highlight {
+      color: #e63946;
+      font-weight: bold;
+    }
+
+    .footer {
+      margin-top: 35px;
+      font-size: 0.9em;
+      color: #666;
+      border-top: 1px solid #e3e8ee;
+      padding-top: 15px;
+      text-align: center;
+    }
+
+    .footer p {
+      margin: 6px 0;
+    }
+
+    .btn-support {
+      display: inline-block;
+      background-color: #1d3557;
+      color: #fff !important;
+      padding: 10px 18px;
+      border-radius: 6px;
+      margin-top: 15px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+
+    .btn-support:hover {
+      background-color: #457b9d;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🚫 Transaction Declined</h1>
+    </div>
+
+    <div class="content">
+      <p>Hi,</p>
+      <p>
+        The transaction <span class="highlight">{{ transaction_id }}</span> made by
+        <span class="highlight">{{ name }}</span> was declined. Below are the details:
+      </p>
+
+      <table class="details-table" role="presentation">
+        <tbody>
+          <tr>
+            <th>Response Code</th>
+            <td>{{ Transaction_Response_Code }}</td>
+          </tr>
+          <tr>
+            <th>Message Code</th>
+            <td>{{ Message_Code }}</td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>{{ Description }}</td>
+          </tr>
+          <tr>
+            <th>AVS Response</th>
+            <td>{{ AVS_response }}</td>
+          </tr>
+          <tr>
+            <th>CVV Response</th>
+            <td>{{ CVV_response }}</td>
+          </tr>
+          <tr>
+            <th>CAVV Response</th>
+            <td>{{ CAVV_response }}</td>
+          </tr>
+          <tr>
+            <th>Purchase Amount</th>
+            <td>$ {{ amount }}</td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td>{{ address }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The order summary is as follows:</p>
+
+      <table class="items-table" role="presentation">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>State</th>
+            <th>County</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cart_item in cart_items %}
+          <tr>
+            <td>{{ cart_item.description }}</td>
+            <td>$ {{ cart_item.per_cost }}</td>
+            <td>{{ cart_item.state|default('') }}</td>
+            <td>{{ cart_item.county|default('') }}</td>
+            <td>{{ cart_item.quantity }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p>
+        If you have any questions or need help resolving this issue,
+        please contact our support team.
+      </p>
+
+      <p style="text-align:center;">
+        <a href="{{ support_link }}" class="btn-support">Contact Support</a>
+      </p>
+    </div>
+
+    <div class="footer">
+      <p>Best regards,</p>
+      <p><strong>The Marketplace Team</strong></p>
+    </div>
+  </div>
+</body>
+
+</html>

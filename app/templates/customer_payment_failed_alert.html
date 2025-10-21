@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Failed - KovaLifeLeads</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8fafc;
+      padding: 20px;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+    .email-container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-top: 5px solid #e53e3e;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .icon {
+      background-color: #fed7d7;
+      color: #c53030;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-right: 15px;
+    }
+    .title {
+      color: #c53030;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0;
+    }
+    .subtitle {
+      color: #718096;
+      font-size: 16px;
+      margin: 5px 0 0 0;
+    }
+    .body {
+      margin-top: 25px;
+      color: #4a5568;
+      font-size: 16px;
+    }
+    .alert-box {
+      background-color: #fff5f5;
+      border: 1px solid #fed7d7;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+    }
+    .amount {
+      font-size: 20px;
+      font-weight: 700;
+      color: #c53030;
+      margin: 10px 0;
+    }
+    .action-box {
+      background-color: #f7fafc;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+      border-left: 4px solid #4a5568;
+    }
+    .action-title {
+      font-weight: 600;
+      color: #2d3748;
+      margin-top: 0;
+    }
+    .button {
+      display: inline-block;
+      background-color: #4f46e5;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: background-color 0.2s;
+    }
+    .button:hover {
+      background-color: #4338ca;
+    }
+    .footer {
+      margin-top: 35px;
+      font-size: 14px;
+      color: #718096;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .highlight {
+      font-weight: 600;
+      color: #2d3748;
+    }
+    .contact-info {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <div class="icon">⚠️</div>
+      <div>
+        <h1 class="title">Payment Failed</h1>
+        <p class="subtitle">KovaLifeLeads</p>
+      </div>
+    </div>
+    
+    <div class="body">
+      <p>Dear <span class="highlight">{{ customer_name }}</span>,</p>
+      
+      <div class="alert-box">
+        <p>We attempted to process your payment, but encountered an issue with your payment method.</p>
+        <div class="amount">Amount: ${{ amount }}</div>
+        <p>The transaction could not be completed at this time.</p>
+      </div>
+      
+      <p>To avoid any interruption to your services, please update your payment information and try again.</p>
+      
+      <p>If you believe this is an error or need assistance with your payment, our support team is here to help.</p>
+      
+      <div class="contact-info">
+        <p><strong>Need Help?</strong><br>
+        Contact our support team at <a href="mailto:support@kovalifeleads.com" style="color: #4f46e5;">support@kovalifeleads.com</a></p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>Thank you,<br>
+      <strong>KovaLifeLeads Team</strong></p>
+      <p style="font-size: 12px; margin-top: 15px;">This is an automated notification. Please do not reply to this email.</p>
+    </div>
+  </div>
+</body>
+</html>

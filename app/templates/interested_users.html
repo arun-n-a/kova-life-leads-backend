@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KovaLifeLeads Inquiry Notification</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        .email-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #002B5B;
+            color: #ffffff;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background-color: #eaf7ff;
+            border-left: 5px solid #1890ff;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            color: #003a75;
+            border-radius: 5px;
+        }
+
+        .details {
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .detail-item strong {
+            color: #444;
+        }
+
+        .footer {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="header">
+            <h1>New User Interest – KovaLifeLeads</h1>
+        </div>
+        <div class="content">
+            <p>Hello Admin,</p>
+
+            <div class="highlight-box">
+                A new user has filled out their details and shown interest in joining the KovaLifeLeads app. 
+                Please review their submission below. If they meet the requirements, you may proceed with the onboarding process.
+            </div>
+
+            <div class="details">
+                <p class="detail-item"><strong>Full Name:</strong> {{ data.name }}</p>
+                <p class="detail-item"><strong>Phone Number:</strong> {{ data.phone }}</p>
+                <p class="detail-item"><strong>Email Address:</strong> {{ data.email }}</p>
+                <p class="detail-item"><strong>Agency Name:</strong> {{ data.agency_name }}</p>
+            </div>
+
+            <p>Thank you for helping us grow the KovaLifeLeads community with trusted and verified members.</p>
+        </div>
+        <div class="footer">
+            This is an automated notification. Please do not reply.<br>
+            &copy; 2025 KovaLifeLeads. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
