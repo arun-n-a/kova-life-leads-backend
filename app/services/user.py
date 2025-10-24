@@ -154,7 +154,7 @@ def adding_new_user(data: Dict, agents: Dict) -> str:
     else:
         raise Conflict(f"This email address already exists but not registered yet")
     add_agents(user_obj.id, agents)
-    token = user_obj.generate_auth_token('invitation', Config_is.AUTH_TOKEN_EXPIRES)  # token expires after 7 days
+    token = user_obj.generate_auth_token('invitation', Config_is.AUTH_TOKEN_EXPIRES)
     sent_email_invitation(
         user_obj.id, user_obj.name, user_obj.phone, user_obj.agency_name, token, 
         {'user_id': user_obj.id, 'email': user_obj.email}

@@ -204,7 +204,7 @@ def user_registration_invitee():
     """
     g.user = User.verify_auth_token(
         "invitation", str(request.headers.get('Authorization', '')).split('Bearer ')[-1], 
-        3600)
+        Config_is.AUTH_TOKEN_EXPIRES)
     if not g.user:
         raise BadRequest("This linked has expired")
     if len(request.json.get("password", "")) < 5:
@@ -543,7 +543,7 @@ def resend_invitation_email(user_id):
     user_obj = User.query.filter_by(id=user_id, registered=False).first()
     if not user_obj:
         raise BadRequest("Registration already complete.")
-    token = user_obj.generate_auth_token('invitation', Config_is.AUTH_TOKEN_EXPIRES)  # token expires after 12 hours
+    token = user_obj.generate_auth_token('invitation', Config_is.AUTH_TOKEN_EXPIRES)
     user_obj.invited_at = datetime.utcnow()
     user_obj.is_invited = True
     sent_email_invitation(user_obj.id, user_obj.name, user_obj.phone, user_obj.agency_name, token, {'user_id': user_obj.id, 'email': user_obj.email})

@@ -148,9 +148,9 @@ class User(BaseModel):
         serializer = URLSafeTimedSerializer(Config_is.SECRET_KEY)
         try:
             data = serializer.loads(token)
-            # data = serializer.loads(token, max_age=expires_in)
-            # if verify_user_token_in_cache(f"{data['id']}_{key_ends_with}", token):
-            #     return data
+            data = serializer.loads(token, max_age=expires_in)
+            if verify_user_token_in_cache(f"{data['id']}_{key_ends_with}", token):
+                return data
             return data
         except Exception as e:
             print(str(e))
