@@ -22,6 +22,7 @@ class Config:
     SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_BUCKET_REGION = os.environ['AWS_BUCKET_REGION']
     S3_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
     REDIS_URL = os.environ['REDIS_URL']
     TWILIO_SID = os.environ['TWILIO_SID']
@@ -36,10 +37,9 @@ class Config:
     STRIPE_WEBHOOK_SECRET = os.environ['STRIPE_WEBHOOK_SECRET']
     DEVELOPERS_EMAIL_ADDRESS = [email_address.strip() for email_address in os.environ['DEVELOPERS_EMAIL_ADDRESS'].split(',')]
     OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
-    SELLER_STRIPE_ACCOUNT_ID = os.environ['SELLER_STRIPE_ACCOUNT_ID']
     RENEWAL_DAY_OF_WEEK = int(os.environ['RENEWAL_DAY_OF_WEEK'])
     ALERT_EMAIL = [_.strip() for _ in os.environ.get('ALERT_EMAIL', '').split(',')]
-    TWILIO_SMS_NUMBERS = []
+    TWILIO_SMS_NUMBERS = [phone.strip() for phone in os.environ['TWILIO_SMS_NUMBERS'].split(',')]
     TWILIO_SMS_NUMBER_FOR_INVITATION = os.environ['TWILIO_SMS_NUMBER_FOR_INVITATION']
 
 Config_is = Config()

@@ -99,7 +99,7 @@ def update_payment_failed_status(payload: Dict):
     SendgridEmailSending(
         to_emails=Config_is.ALERT_EMAIL,
             html_content=admin_template,
-            subject=f"[SheildNest Payment Failed]: {customer_obj.name} {data['id']}"
+            subject=f"[{Config_is.APP_NAME} Payment Failed]: {customer_obj.name} {data['id']}"
         ).send_email_without_logs()
     return True
 
