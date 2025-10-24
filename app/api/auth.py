@@ -144,7 +144,7 @@ def forgot_password_req():
     )
     sent = SendgridEmailSending(
         [{'user_id': str(g.user.id), 'email': g.user.email}], 
-        "Reset Password: KovaLifeLeads Application", 
+        f"Reset Password: {Config_is.APP_NAME} Application", 
         password_reset_form, 2
         ).send_email()
     if sent:

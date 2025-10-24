@@ -1,1 +1,1 @@
-# KovaLifeLeads Backend
+# CRM and marketplace management Backend

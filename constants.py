@@ -30,7 +30,6 @@ LEAD_CATEGORY = {
 
 CSV_DOWNLOAD_MORTGAGE_FIELDS = ["Identifier", "Lead Full Name", "Client Address", "City", "State", "Zip", "Lender", "Loan Amount", "Loan Date", " Agent ID", "Call In Date", "Lead Phone Number", "Borrower Age", "Borrower Medical Issues", "Borrower Tobacco Use,Co-Borrower?", "Borrower Phone", "First Name", "Last Name", "Lead Status"]
 CSV_DOWNLOAD_IVR_COMPLETED_FIELDS = ["Identifier", "Lead Full Name", "Client Address", "City", "State", "Zip", "Lender", "Loan Amount", "Loan Date", "Agent ID", "Call In Date", "Lead Phone Number", "Borrower Age", "Borrower Medical Issues", "Borrower Tobacco Use,Co-Borrower?", "Borrower Phone", "First Name", "Last Name", "Lead Status"]
-IVR_COMPLETED_CSV_DOWNLOAD_FIELDS = []
 PRICING_DETAIL_MONTH = {
     0: {'name': "Fresh leads"},
     1: {'name': "1+ month (1-2 months)",  'start_day': 30, 'end_day': 60},

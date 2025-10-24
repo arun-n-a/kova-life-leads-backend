@@ -51,7 +51,7 @@ def sent_email_invitation(
     Sent email invitation to new users with signup link
     """
     registration_url=(
-            f"{Config_is.FRONT_END_REGISTRATION_URL}/{auth_token}?name="
+            f"{Config_is.FRONT_END_REGISTRATION_URL}/{auth_token.replace('.', '$$$$$')}?name="
             f"{name.replace(' ', '+')}&phone={phone}&agency_name={agency_name}"
         )
     invitation_html = render_template(
@@ -60,7 +60,6 @@ def sent_email_invitation(
         registration_url=registration_url
         )
     temp_id = generate_short_code()
-    print(temp_id)
     add_redis_ttl_data(
         f'sms_invitation_{temp_id}', 
         Config_is.AUTH_TOKEN_EXPIRES, 
@@ -68,14 +67,12 @@ def sent_email_invitation(
         )
     print('redis added')
     response = SendgridEmailSending(
-        [to_email], "KovaLifeLeads Application Invitation", 
+        [to_email], f"{Config_is.APP_NAME} Application Invitation", 
         invitation_html, 1
         ).send_email()
-    print('sendgrid email sent*****')
-    print(f"You are invited to join KovaLifeLeads {Config_is.FRONT_END_REGISTRATION_SHORT_URL}/{temp_id}")
     tasks.celery_twilio_sms(
         to=phone, 
-        body=f"You are invited to join KovaLifeLeads {Config_is.FRONT_END_REGISTRATION_SHORT_URL}/{temp_id}", 
+        body=f"You are invited to join {Config_is.APP_NAME} {Config_is.FRONT_END_REGISTRATION_SHORT_URL}/{temp_id}", 
         twilio_from_numbers=[Config_is.TWILIO_SMS_NUMBER_FOR_INVITATION]
         )
     
@@ -92,7 +89,7 @@ def interested_user_invitation(data: Dict) -> bool:
     html_template = render_template("interested_users.html", data=data)
     response = SendgridEmailSending(
         Config_is.INVITATION_EMAIL_TO, 
-        f"Review Needed: New KovaLifeLeads User Submission {data['name']}", 
+        f"Review Needed: New {Config_is.APP_NAME} User Submission {data['name']}", 
         html_template, 4
         ).send_email_without_logs()
     user_obj = IU.query.filter(IU.email == data['email']).first()
@@ -159,7 +156,7 @@ def adding_new_user(data: Dict, agents: Dict) -> str:
     add_agents(user_obj.id, agents)
     token = user_obj.generate_auth_token('invitation', Config_is.AUTH_TOKEN_EXPIRES)  # token expires after 7 days
     sent_email_invitation(
-        user_obj.id, user_obj.name, user_obj.phone, user_obj.agency_name, token.replace('.', '$$$$$'), 
+        user_obj.id, user_obj.name, user_obj.phone, user_obj.agency_name, token, 
         {'user_id': user_obj.id, 'email': user_obj.email}
         )
     for column, value in {"is_active": True, "registered": False, "is_invited": True, 'invited_at': datetime.utcnow(), **data}.items():
@@ -222,7 +219,7 @@ def change_user_active_inactive_status(
         )
     SendgridEmailSending(
         [{'user_id': user_id, 'email': user_obj.email}], 
-        "KovaLifeLeads Application Account status", 
+        f"{Config_is.APP_NAME} Application Account status", 
         alert_template, 3
         ).send_email()
     return True
@@ -368,7 +365,7 @@ def handle_user_intent_request(id_: str, action: str, rejection_message: str) ->
             SendgridEmailSending(
                 to_emails=[interested_user.payload.get("email")],
                 html_content=rejection_template,
-                subject="KovaLifeLeads Application Status Update"
+                subject=f"{Config_is.APP_NAME} Application Status Update"
                 ).send_email_without_logs()
         else:
             interested_user.message = "No reason"

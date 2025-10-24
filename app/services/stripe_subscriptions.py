@@ -190,7 +190,7 @@ def subscription_webhook(hook_id: str, payload: Dict) -> bool:
         if not scs_obj:
             SendgridEmailSending(
                 Config_is.DEVELOPERS_EMAIL_ADDRESS, 
-                f"{Config_is.ENVIRONMENT} KovaLifeLeads failed subscription webhook {hook_id}", 
+                f"{Config_is.ENVIRONMENT} {Config_is.APP_NAME} failed subscription webhook {hook_id}", 
                 f'<p>Failed customer_id validation</p><p>payload={payload}</p>', 8
                 ).send_email_without_logs()
             return False
@@ -219,7 +219,7 @@ def subscription_webhook(hook_id: str, payload: Dict) -> bool:
             )
         SendgridEmailSending(
             [{'user_id': str(user_obj[0]), 'email': user_obj[1]}],
-            f"KovaLifeLeads Subscription: {scs_obj.name}", 
+            f"{Config_is.APP_NAME} Subscription: {scs_obj.name}", 
             email_body, 8).send_email()
     elif payload.get('type') == 'customer.subscription.deleted':
          return process_cancelled_subscription(payload, hook_id)
@@ -227,7 +227,7 @@ def subscription_webhook(hook_id: str, payload: Dict) -> bool:
         # CRUD.update(SCS, {'stripe_subscription_id': payload['data']['object']['id']}, {'status': payload['data']['object']['status']}):
         SendgridEmailSending(
             Config_is.DEVELOPERS_EMAIL_ADDRESS, 
-            f"{Config_is.ENVIRONMENT} KovaLifeLeads subscription webhook other than created {hook_id}", 
+            f"{Config_is.ENVIRONMENT} {Config_is.APP_NAME} subscription webhook other than created {hook_id}", 
             f'<p>Failed customer_id validation</p><p>payload={payload}</p>', 8
             ).send_email_without_logs()
     return True
@@ -253,7 +253,7 @@ def process_cancelled_subscription(payload: Dict, hook_id: str) -> bool:
         )
         SendgridEmailSending(
             [{'user_id': str(user_obj[0]), 'email': user_obj[1]}],
-            f"KovaLifeLeads Subscription Cancelled: {scs_obj.name}",
+            f"{Config_is.APP_NAME}s Subscription Cancelled: {scs_obj.name}",
             email_body, 8
         ).send_email()
     else:

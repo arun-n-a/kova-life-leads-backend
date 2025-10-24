@@ -339,7 +339,7 @@ def subscription_payment_status_update(payload: Dict):
         )
     SendgridEmailSending(
         [{'user_id': str(user_obj.id), 'email': user_obj.email}], 
-        f"🛒 New payment Alert - KovaLifeLeads {os_obj.stripe_payment_id}", 
+        f"🛒 New payment Alert - {Config_is.APP_NAME} {os_obj.stripe_payment_id}", 
         email_body, 6
         ).send_email()
     # redis_obj.delete(subscription.stripe_subscription_id)

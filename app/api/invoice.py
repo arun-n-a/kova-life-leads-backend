@@ -49,7 +49,7 @@ invoice_bp = Blueprint("invoice_bp", __name__)
 #                   properties:
 #                     name:
 #                       type: string
-#                       example: "KovaLifeLeads Insurance Company"
+#                       example: "XYZ Insurance Company"
 #                     address:
 #                       type: string
 #                       example: "123 Main St, City, Country"

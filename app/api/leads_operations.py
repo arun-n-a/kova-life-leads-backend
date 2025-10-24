@@ -817,7 +817,7 @@ def deleting_sold_lead_docs(category, mortgage_id, agent_id):
               items:
                 type: string
               description: List of filenames to delete from the lead's document folder
-              example: ["Kovalifeleads.jpg", "Kovalifeleads.pdf"]
+              example: ["sale.jpg", "consent.pdf"]
 
     responses:
       200:
@@ -954,12 +954,11 @@ def listing_docs(category, mortgage_id, agent_id):
                   name:
                     type: string
                     description: File name
-                    example: Kovalifeleads.pdf
+                    example: consent.pdf
                   url:
                     type: string
                     format: uri
                     description: Presigned URL for temporary access to the file
-                    example: https://s3.amazonaws.com/yourbucket/mailer/123/Kovalifeleads.pdf?AWSAccessKeyId=...
             message:
               type: string
               example: success
@@ -1189,7 +1188,7 @@ def searching_mortgage_id(category):
                   example: "Incomplete data"
                 campaign_name:
                   type: string
-                  example: KovaLifeLeads Campaign
+                  example: XYZ Campaign
                 call_in_date_time:
                   type: string
                   format: date-time
@@ -1441,7 +1440,7 @@ def get_campaign_leads():
                 properties:
                   campaign_name:
                     type: string
-                    example: "KovaLifeLeads Campaign"
+                    example: "XYZ Campaign"
                   total_leads:
                     type: integer
                     example: 25

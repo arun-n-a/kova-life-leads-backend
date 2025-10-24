@@ -289,7 +289,7 @@ def listing_agents_for_assignment():
           properties:
             name:
               type: string
-              example: "KovaLifeLeads"
+              example: "Xyz Lead"
             agent_id:
               type: integer
               example: 1212

@@ -88,7 +88,7 @@ def getting_session_status_marketplace(session_id: str) -> Dict:
 #     if not user_obj:
 #         SendgridEmailSending(
 #         Config_is.DEVELOPERS_EMAIL_ADDRESS, 
-#         f"{Config_is.ENVIRONMENT} Webhooks invalid Customer {stripe_customer_id} - KovaLifeLeads", 
+#         f"{Config_is.ENVIRONMENT} Webhooks invalid Customer {stripe_customer_id} - {Config_is.APP_NAME}", 
 #         f"payload = {request.json}"
 #         ).send_email_without_logs()
 #         return True
@@ -111,7 +111,7 @@ def getting_session_status_marketplace(session_id: str) -> Dict:
 #     if not order_obj:
 #         SendgridEmailSending(
 #             Config_is.DEVELOPERS_EMAIL_ADDRESS, 
-#         f"🛒 {Config_is.ENVIRONMENT} Webhooks invalid orderSummary {payment_id} - KovaLifeLeads", 
+#         f"🛒 {Config_is.ENVIRONMENT} Webhooks invalid orderSummary {payment_id} - {Config_is.APP_NAME}", 
 #         f"payload = {request.json}"
 #         ).send_email_without_logs()
 #         return True
@@ -142,7 +142,7 @@ def getting_session_status_marketplace(session_id: str) -> Dict:
 #                         )
 #     SendgridEmailSending(
 #         to_emails, 
-#         f"🛒 New Purchase Alert - KovaLifeLeads {payment_id}", 
+#         f"🛒 New Purchase Alert - {Config_is.APP_NAME} {payment_id}", 
 #         email_body, 6
 #         ).send_email()
 #     # user email
@@ -165,7 +165,7 @@ def getting_session_status_marketplace(session_id: str) -> Dict:
 #                         )
 #     SendgridEmailSending(
 #         [{'user_id': str(user_obj.id), 'email': user_obj.email}], 
-#         f"🛒 New Purchase Alert - KovaLifeLeads {payment_id}", 
+#         f"🛒 New Purchase Alert - {Config_is.APP_NAME} {payment_id}", 
 #         email_body, 6
 #         ).send_email()
 #     return True

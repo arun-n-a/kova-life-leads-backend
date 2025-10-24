@@ -62,7 +62,7 @@ def add_new_users():
             email:
               type: string
               format: email
-              example: user@kovalifeleads.com
+              example: user@example.com
             name:
               type: string
               example: John Doe
@@ -78,7 +78,7 @@ def add_new_users():
                 - 2: Agent
             agency_name:
               type: string
-              example: KovaLifeLeads Agency
+              example: XYZ Agency
             agents:
               type: object
               properties:
@@ -169,17 +169,17 @@ def user_registration_invitee():
           properties:
             name:
               type: string
-              example: John Shi
+              example: William James
             email:
               type: string
               format: email
-              example: john@Kovalifeleads.com
+              example: william@example.com
             phone:
               type: string
               example: 9876543210
             agency_name:
               type: string
-              example: KovaLifeLeads Agency
+              example: XYZ Agency
             password:
               type: string
               format: password
@@ -457,17 +457,17 @@ def list_paginated_users():
                     example: "123"
                   name:
                     type: string
-                    example: "John Shi"
+                    example: "William James"
                   email:
                     type: string
                     format: email
-                    example: "john@Kovalifeleads.com"
+                    example: "william@example.com"
                   phone:
                     type: string
                     example: "9876543210"
                   agency_name:
                     type: string
-                    example: "KovaLifeLeads Agency"
+                    example: "XYZ Agency"
             pagination:
               type: object
               properties:
@@ -546,7 +546,7 @@ def resend_invitation_email(user_id):
     token = user_obj.generate_auth_token('invitation', Config_is.AUTH_TOKEN_EXPIRES)  # token expires after 12 hours
     user_obj.invited_at = datetime.utcnow()
     user_obj.is_invited = True
-    sent_email_invitation(user_obj.id, user_obj.name, user_obj.phone, user_obj.agency_name, token.replace(".", "$$$$$"), {'user_id': user_obj.id, 'email': user_obj.email})
+    sent_email_invitation(user_obj.id, user_obj.name, user_obj.phone, user_obj.agency_name, token, {'user_id': user_obj.id, 'email': user_obj.email})
     return jsonify({"message": "Success", "status": 200})
 
 
@@ -630,17 +630,17 @@ def get_my_own_user_data():
                   example: "123"
                 name:
                   type: string
-                  example: "John Shi"
+                  example: "William James"
                 email:
                   type: string
                   format: email
-                  example: "john@Kovalifeleads.com"
+                  example: "william@example.com"
                 phone:
                   type: string
                   example: "9876543210"
                 agency_name:
                   type: string
-                  example: "KovaLifeLeads Agency"
+                  example: "XYZ Agency"
                 role_id:
                   type: integer
                   example: 2
@@ -686,24 +686,24 @@ def interested_person_email():
           properties:
             name:
               type: string
-              example: "John Shi"
+              example: "William James"
             email:
               type: string
               format: email
-              example: "john@Kovalifeleads.com"
+              example: "william@example.com"
             phone:
               type: string
               example: "19999"
             address:
               type: string
-              example: "123 KovaLifeLeads St."
+              example: "123 LLT St."
             hierarchy:
               type: string
               example: "Level 1"
             hierarchy_email:
               type: string
               format: email
-              example: "manager@Kovalifeleads.com"
+              example: "admin@example.com"
             hierarchy_phone:
               type: string
               example: "199999"

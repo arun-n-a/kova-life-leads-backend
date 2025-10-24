@@ -7,6 +7,7 @@ load_dotenv(os.path.join(basedir, '.env'))
 
 class Config:
     ENVIRONMENT = os.environ['ENVIRONMENT']
+    APP_NAME = os.environ['APP_NAME']
     BASE_URL = os.environ['BASE_URL']
     FRONT_END_URL = os.environ['FRONT_END_URL']
     FRONT_END_PASSWORD_RESET_URL = os.environ['FRONT_END_PASSWORD_RESET_URL']

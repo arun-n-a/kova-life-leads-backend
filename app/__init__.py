@@ -46,7 +46,7 @@ def create_app(config_class=Config_is):
     swagger_template = {
         "swagger": "2.0",
     "info": {
-        "title": "KovaLifeLeads Leads API",
+        "title": f"{Config_is.APP_NAME} Leads API",
         "description": "Enter token using the Authorize button above.",
         "version": "1.0"
     },
